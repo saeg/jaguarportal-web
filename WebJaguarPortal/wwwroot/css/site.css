@@ -1,0 +1,325 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    background-color: #1e1e1e;
+    font-size: 12px;
+    color: #ddd;
+}
+
+.containerMain {
+    display: flex;
+    height: 100vh;
+}
+
+.uniquePanel {
+    border: 1px solid #333;
+    margin: 5px;
+    padding: 20px;
+}
+
+.left-panel {
+    width: 25%;
+    resize: horizontal;
+    overflow: auto;
+    background-color: #1e1e1e;
+    margin: 5px;
+    border: 1px solid #333;
+    color: #ddd;
+}
+
+.right-panel {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.top-panel {
+    margin: 5px;
+    border: 1px solid #333;
+    height: 75%;
+    background-color: #1e1e1e;
+}
+
+.bottom-panel {
+    margin: 5px;
+    border: 1px solid #333;
+    background-color: #1e1e1e;
+    height: 25%;
+}
+
+.menu-panel {
+    margin: 5px 0 5px 5px;
+    /*border: 1px solid #333;*/
+    background-color: #333;
+    font-size: 22px;
+    text-align: center;
+    padding: 0px 10px;
+    width: 50px;
+}
+
+    .menu-panel .logo {
+        width: 28px;
+    }
+
+    .menu-panel a i {
+        color: #ddd;
+    }
+
+        .menu-panel a i:hover {
+            color: #0094ff;
+        }
+
+    .menu-panel div {
+        padding: 10px 0;
+    }
+
+    .menu-panel .top {
+        position: absolute;
+        top: 0;
+    }
+
+    .menu-panel .bottom {
+        position: absolute;
+        text-align: center;
+        bottom: 0;
+        width: 30px;
+    }
+
+
+.left-panel, .top-panel, .bottom-panel {
+    overflow: auto;
+}
+/* Cor da barra de rolagem */
+::-webkit-scrollbar {
+    width: 4px; /* Largura da barra de rolagem */
+    background-color: #1e1e1e; /* Cor de fundo da barra de rolagem */
+}
+
+/* Cor do indicador da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background-color: #aaa; /* Cor do indicador da barra de rolagem */
+}
+
+.bar-title {
+    border-bottom: 2px solid #0094ff;
+    margin-bottom: 5px;
+}
+
+    .bar-title ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+    }
+
+        .bar-title ul li {
+            border-top: 2px solid #1e1e1e;
+            padding: 0 10px;
+            margin: 0 5px;
+            background-color: #333;
+            color: #bbb;
+        }
+
+            .bar-title ul li.selected {
+                border-top: 2px solid #0094ff;
+                color: white;
+            }
+
+
+ul[role="tree"] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding: 0 10px
+}
+
+    ul[role="tree"] li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+[role="treeitem"][aria-expanded="false"] + [role="group"] {
+    display: none;
+}
+
+[role="treeitem"][aria-expanded="true"] + [role="group"] {
+    display: block;
+}
+
+[role="treeitem"].doc::before {
+    font-family: "FontAwesome";
+    content: "\f15c";
+    display: inline-block;
+    padding-right: 2px;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+[role="treeitem"].java::before {
+    font-family: "FontAwesome";
+    content: "\f4e4";
+    display: inline-block;
+    padding-right: 2px;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+[role="treeitem"].code::before {
+    font-family: "FontAwesome";
+    content: "\f121";
+    display: inline-block;
+    padding-right: 2px;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+[role="treeitem"][aria-expanded="false"] > ul {
+    display: none;
+}
+
+[role="treeitem"][aria-expanded="true"] > ul {
+    display: block;
+}
+
+[role="treeitem"][aria-expanded="false"] > span::before {
+    font-family: "FontAwesome";
+    content: "\f07b";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+}
+
+[role="treeitem"][aria-expanded="true"] > span::before {
+    font-family: "FontAwesome";
+    content: "\f07c";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+}
+
+[role="treeitem"],
+[role="treeitem"] span {
+    cursor: pointer;
+    width: 100%;
+    margin: 0;
+    padding: 0.125em;
+    display: block;
+}
+
+    /* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+    [role="treeitem"]:focus {
+        outline: 0;
+    }
+
+    [role="treeitem"][aria-selected="true"].doc {
+        background-color: #333;
+        border-bottom: 2px solid #0094ff
+    }
+
+    [role="treeitem"].focus,
+    [role="treeitem"] span.focus {
+        background-color: #333;
+    }
+
+    [role="treeitem"].hover,
+    [role="treeitem"] span:hover {
+        background-color: #333;
+    }
+
+
+/*code*/
+.hljs-ln-line.hljs-ln-n {
+    text-align: right;
+    padding: 0 10px;
+}
+
+.hljs-ln-code {
+    border-color: #1e1e1e;
+    width: 100%;
+}
+
+    .hljs-ln-code:hover {
+        background-color: #333;
+    }
+
+
+
+#alertFadeContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+
+    #alertFadeContainer div {
+        max-width: 400px;
+        text-align: center;
+    }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+table tr.selected {
+    background-color: #4b4b4b;
+}
+
+.table-dark a, .table-dark a:visited, .table-dark a:link {
+    color: white;
+}
+
+.suspA1 td:first-child {
+    background-color: #FF0000;
+    color: #333;
+}
+
+.suspA2 td:first-child {
+    background-color: #FF4500;
+    color: #333;
+}
+
+.suspA3 td:first-child {
+    background-color: #FFA500;
+    color: #333;
+}
+
+.suspA4 td:first-child {
+    background-color: #ADFF2F;
+    color: #333;
+}
+
+.suspA5 td:first-child {
+    background-color: #00FF00;
+    color: #333;
+}
+
+.suspA1 {
+    border: 1px solid #FF0000;
+}
+
+.suspA2 {
+    border: 1px solid #FF4500;
+}
+
+.suspA3 {
+    border: 1px solid #FFA500;
+}
+
+.suspA4 {
+    border: 1px solid #ADFF2F;
+}
+
+.suspA5 {
+    border: 1px solid #00FF00;
+}

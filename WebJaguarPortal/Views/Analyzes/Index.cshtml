@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AnalyzeGridItemViewModel>
+@{
+    ViewData["Title"] = "Analyzes";
+}
+
+<div class="container-fluid uniquePanel">
+
+    <div class="row">
+        <div class="col">
+            <h1>Analyzes</h1>
+
+            <table class="table table-striped table-hover table-borderless table-dark align-middle">
+                <thead>
+                    <tr>
+                        <td>
+                            Project Name
+                        </td>
+                        <td>
+                            Repository
+                        </td>
+                        <td>
+                            Pull Request
+                        </td>
+                        <td>
+                            Status
+                        </td>
+                        <td>
+                            Tests Pass/Total
+                        </td>
+                        <td>
+                            Created at
+                        </td>
+                        <td>
+                            Updated at
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ProjectName</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.RepositoryUrl))
+                                {
+                                    <a target="_blank" href="@item.RepositoryUrl">@item.Repository</a>
+                                }
+                                else
+                                {
+                                    @item.Repository
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.PullRequestUrl))
+                                {
+                                    <a target="_blank" href="@item.PullRequestUrl">#@item.PullRequestNumber - @item.PullRequestFromTo</a>
+                                }
+                            </td>
+                            <td>@item.Status</td>
+                            <td>@Html.Raw($"{item.TestsPass}/{item.TestsFail + @item.TestsPass}")</td>
+                            <td>@item.CreatedAt</td>
+                            <td>@item.UpdatedAt</td>
+                            <td class="text-end">
+                                @if (User.IsInRole(WebJaguarPortal.Infrastructure.RolesUtil.AnalyzesDetail))
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("Detail","Analyzes", new {id = item.Id})" title="Detail">
+                                        <i class="fa-solid fa-eye fa-lg"></i> DETAIL
+                                    </a>
+                                }
+                                @if (User.IsInRole(WebJaguarPortal.Infrastructure.RolesUtil.AnalyzesDelete))
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("Delete","Analyzes", new {id = item.Id})" title="Delete">
+                                        <i class="fa-solid fa-trash-can fa-lg"></i> DELETE
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

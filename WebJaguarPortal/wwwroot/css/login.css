@@ -1,0 +1,20 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+}
+
+.containerLogin {
+    min-width: 400px;
+    background-color: #333;
+    border-radius: 15px;
+    padding:30px;
+    color:#f1f1f1;
+}
+
+.logo{
+    width:200px;
+}

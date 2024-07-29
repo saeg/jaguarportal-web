@@ -1,0 +1,40 @@
+﻿@model ProjectEditViewModel
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<div class="container-fluid uniquePanel">
+
+    <h1>Detail Project</h1>
+    <h4>Project: @Model.Name</h4>
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
+            <input asp-for="Id" type="hidden" required>
+
+            <div class="form-group mb-2">
+                <label asp-for="Key"></label>
+                <input asp-for="Key" type="text" class="form-control" placeholder="Name" readonly>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" type="text" class="form-control" placeholder="Name" readonly>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" type="text" class="form-control" placeholder="Description" readonly>
+            </div>
+
+            <div class="text-danger">
+                @Html.ValidationSummary()
+            </div>
+
+            <div class="float-end">
+                <a href="@Url.Action("Index","Projects")" class="btn btn-outline-primary btn-light">Back</a>
+            </div>
+        </div>
+    </div>
+
+</div>

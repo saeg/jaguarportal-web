@@ -1,0 +1,60 @@
+﻿@model LoginViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Jaguar Portal - Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="containerLogin">
+        <div class="text-center">
+            <h1 class="visually-hidden">Jaguar Portal</h1>
+            <img src="~/img/jaguar.svg" alt="Jaguar Portal logo" class="logo" />
+        </div>
+        <div class="mt-4">
+            <div class="">
+                <form method="post">
+                    <h4>Login</h4>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Username">Username</label>
+                        <input asp-for="Username" autofocus type="text" class="form-control" aria-describedby="usernameHelp" placeholder="Enter username">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Password">Password</label>
+                        <input asp-for="Password" type="password" autocomplete="off" class="form-control" aria-describedby="passwordHelp" placeholder="Enter password">
+                    </div>
+                    <label class="text-danger">
+                        @Html.ValidationSummary()
+                    </label>
+
+                    <div class="w-100">
+                        <div class="form-group text-end">
+                            <button class="btn btn-primary" type="submit">Login</button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a class="link-info" href="@Url.Action("ForgotPassword", "Login")">Forgot password?</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="link-info" href="@Url.Action("FirstLogin", "Login")">First login?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+</body>
+</html>
