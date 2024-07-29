@@ -1,0 +1,44 @@
+﻿@model AnalyzeDeleteViewModel
+@{
+    ViewData["Title"] = "Analysis";
+}
+
+<div class="container-fluid uniquePanel">
+
+    <h1>Delete Analysis</h1>
+    <h4>Are you sure you want to delete this?</h4>
+
+    <h5></h5>
+    <form method="post">
+        <div class="row">
+            <div class="col-xl-3 col-lg-6">
+                <input asp-for="Id" type="hidden" class="form-control">
+
+
+                <div class="form-group mb-2">
+                    <label asp-for="ProjectName"></label>
+                    <input asp-for="ProjectName" type="text" class="form-control" readonly>
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="Repository"></label>
+                    <input asp-for="Repository" type="text" class="form-control" readonly>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="CreatedAt"></label>
+                    <input asp-for="CreatedAt" type="text" class="form-control" readonly>
+                </div>
+
+                <div class="text-danger">
+                    @Html.ValidationSummary()
+                </div>
+
+                <div class="float-end">
+                    <a href="@Url.Action("Index","Projects")" class="btn btn-outline-danger btn-light">Cancel</a>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

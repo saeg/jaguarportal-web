@@ -1,0 +1,93 @@
+﻿@model MyAccountViewModel
+@{
+    ViewData["Title"] = "My account";
+}
+@section Scripts{
+    <script>
+        var urlPersonalForm = '@Url.Action("Personal")';
+        var urlPasswordForm = '@Url.Action("Password")';
+        var urlApiForm = '@Url.Action("Api")';
+    </script>
+
+    <script src="~/js/MyAccount.js" asp-append-version="true"></script>
+}
+    <div class="container-fluid uniquePanel">
+        <h1>My Account</h1>
+        <h3>Username: @Html.Raw(Model.Username)</h3>
+        <div class="row mt-5">
+            <div class="col-md">
+                <h4>Personal Data</h4>
+                <form method="post" id="personalForm">
+
+                    <div class="form-group mb-2">
+                        <label asp-for="FirstName">First name</label>
+                        <input asp-for="FirstName" type="text" class="form-control" placeholder="First name" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="LastName">Last name</label>
+                        <input asp-for="LastName" type="text" class="form-control" placeholder="Last name" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Email">E-mail</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="E-mail" required>
+                    </div>
+                    <div class="summary"></div>
+                    <button class="btn btn-primary float-end">Save</button>
+                </form>
+            </div>
+            <div class="col-md">
+                <h4>Security</h4>
+
+                <form method="post" asp-action="Password" id="passwordForm">
+                    <div class="form-group mb-2">
+                        <label asp-for="CurrentPassword">Current password</label>
+                        <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="Current password">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label asp-for="Password">New password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="New password">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="ConfirmPassword">Confirm new password</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm new password">
+                    </div>
+                    <div class="summary"></div>
+                    <button class="btn btn-primary float-end">Change password</button>
+                </form>
+            </div>
+            <div class="col-md">
+                <h4>Api Credentials</h4>
+                <form method="post" asp-action="Api" id="apiForm">
+
+                    <div class="form-group mb-2">
+                        <label asp-for="ClientId">Client Id</label>
+                        <div class="input-group mb-3 input-copy">
+                            <input asp-for="ClientId" type="text" class="form-control" placeholder="Client Id" readonly="readonly">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa-solid fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="ClientSecret">Client Secret</label>
+
+                        <div class="input-group mb-3 input-copy">
+                            <input id="ClientSecret" type="text" class="form-control" placeholder="Visible only when generated" readonly="readonly">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" disabled>
+                                    <i class="fa-solid fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="summary"></div>
+                    <button class="btn btn-primary float-end">Generate Client Secret</button>
+                </form>
+            </div>
+        </div>
+    </div>

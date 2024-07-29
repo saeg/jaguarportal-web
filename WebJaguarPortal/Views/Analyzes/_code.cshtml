@@ -1,0 +1,49 @@
+﻿@model CodeViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="bar-title">
+    <ul>
+        <li class="selected">
+            <span data-toggle="tooltip" title="Class @Model.ClassName, in @Model.Path\@Model.FileName">@Model.FileName</span>
+        </li>
+    </ul>
+</div>
+<pre class="code">@Model.Content</pre>
+
+
+<script>
+    var objSusp = {
+        A1: [],
+        A2: [],
+        A3: [],
+        A4: [],
+        A5: []
+    }
+</script>
+@foreach (var item in @Model.Lines)
+{
+    if (item.SuspiciousValue > 0.8)
+    {
+        <script>objSusp.A1.push([@item.NumberLine,@item.SuspiciousValue])</script>
+    }
+    else if (item.SuspiciousValue > 0.6)
+    {
+        <script>objSusp.A2.push([@item.NumberLine,@item.SuspiciousValue])</script>
+    }
+    else if (item.SuspiciousValue > 0.4)
+    {
+        <script>objSusp.A3.push([@item.NumberLine,@item.SuspiciousValue])</script>
+    }
+    else if (item.SuspiciousValue > 0.2)
+    {
+        <script>objSusp.A4.push([@item.NumberLine, @item.SuspiciousValue])</script>
+    }
+    else
+    {
+        <script>objSusp.A5.push([@item.NumberLine, @item.SuspiciousValue])</script>
+    }
+}

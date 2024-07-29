@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebJaguarPortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebJaguarPortal.styles.css" asp-append-version="true" />
+    <link href="~/css/all.css" asp-append-version="true" rel="stylesheet">
+    <link href="~/css/brands.css" asp-append-version="true" rel="stylesheet">
+    <link href="~/css/solid.css" asp-append-version="true" rel="stylesheet">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/vs2015.min.css">
+
+</head>
+<body>
+    <div class="containerMain">
+        @if (ViewData["HiddenMenuPanel"] == null && User?.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <div class="menu-panel">
+                <div class="top">
+                    <div>
+                        <a href="@Url.Action("Index","Home")" class="button" title="Jaguar Portal - Home" data-toggle="tooltip" data-placement="right">
+                            <img src="~/img/j.svg" class="logo" />
+                        </a>
+                    </div>
+                    @if (User.IsInRole(RolesUtil.ProjectsList))
+                    {
+                        <div>
+                            <a href="@Url.Action("Index","Projects")" class="button" title="Projects" data-toggle="tooltip" data-placement="right">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </a>
+                        </div>
+                    }
+                    @if (User.IsInRole(RolesUtil.AnalyzesList))
+                    {
+                        <div>
+                            <a href="@Url.Action("Index","Analyzes")" class="button" title="Analyzes" data-toggle="tooltip" data-placement="right">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </a>
+                        </div>
+
+                    }
+                    @if (User.IsInRole(RolesUtil.UsersList))
+                    {
+                        <div>
+                            <a href="@Url.Action("Index","Users")" class="button" title="Users" data-toggle="tooltip" data-placement="right">
+                                <i class="fa-solid fa-users-rectangle"></i>
+                            </a>
+                        </div>
+
+                    }
+                    @if (User.IsInRole(RolesUtil.AnalyzesNew))
+                    {
+                        <div>
+                            <a href="@Url.Action("Index","Swagger")" class="button" target="_blank" title="OpenAPI Specification" data-toggle="tooltip" data-placement="right">
+                                <i class="fa-solid fa-book"></i>
+                            </a>
+                        </div>
+
+                    }
+                    @if (User.IsInRole(RolesUtil.Admin))
+                    {
+                        <div>
+                            <a href="@Url.Action("Index","Settings")" class="button" title="Settings" data-toggle="tooltip" data-placement="right">
+                                <i class="fa-solid fa-gear"></i>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="bottom">
+                    <div>
+                        <a href="@Url.Action("Index","Account")" class="button" title="My Account (@Html.Raw(User?.Identity?.Name))" data-toggle="tooltip" data-placement="right">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Logout","Login")" class="button" title="SignOut" data-toggle="tooltip" data-placement="right">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+
+        @RenderBody()
+
+        @if (TempData["AlertFade"] != null && User?.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <div id="alertFadeContainer">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @Html.Raw(TempData["AlertFade"])
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.6.0/highlightjs-line-numbers.min.js" integrity="sha512-nkjLcPbHjdAof51b8uUd+6q4YH7YrMwh+kfTwSBrg5T/yMKrz8GUxM4uJJ1xAL7Q1lfAMIEowDsTzfWskZ5RcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

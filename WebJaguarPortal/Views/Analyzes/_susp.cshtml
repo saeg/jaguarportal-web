@@ -1,0 +1,40 @@
+﻿@model List<LineAnalysisViewModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int pos = 0;
+}
+
+<table class="table table-responsive table-dark table-borderless table-striped table-sm">
+    <thead>
+        <tr>
+            <th>Ranking</th>
+            <th>Suspension</th>
+            <th>Class</th>
+            @*<th>Method</th>*@
+            <th>Line</th>
+            <th>CNF</th>
+            <th>CNP</th>
+            <th>CEF</th>
+            <th>CEP</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderByDescending(x=>x.SuspiciousValue))
+        {
+            pos++;
+            <tr class="cursor-pointer" onclick="openCode('@item.ClassId','@item.NumberLine')">
+                <td>@pos</td>
+                <td>@item.SuspiciousValue</td>
+                <td>@item.ClassName</td>
+                @*<td>@item.Method</td>*@
+                <td>@item.NumberLine</td>
+                <td>@item.Cnf</td>
+                <td>@item.Cnp</td>
+                <td>@item.Cef</td>
+                <td>@item.Cep</td>
+            </tr>
+        }        
+    </tbody>
+</table>

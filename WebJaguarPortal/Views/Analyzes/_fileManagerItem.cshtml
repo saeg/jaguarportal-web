@@ -1,0 +1,26 @@
+﻿@model IEnumerable<FileManagerItemViewModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@foreach (var item in Model)
+{
+    if (item.IsPath)
+    {
+        <li role="treeitem" aria-expanded="false" aria-selected="false">
+            <span> @item.Name </span>
+            @if (item.FilesAndPaths != null && item.FilesAndPaths.Count() > 0)
+            {
+                <ul role="group">
+                    @{await Html.RenderPartialAsync("_fileManagerItem", item.FilesAndPaths);}
+                </ul>
+            }
+        </li>
+    }
+    else if (item.IsFile)
+    {
+        <li role="treeitem" aria-selected="false" data-idcode="@item.IdClass" class="@item.Icon">@item.Name</li>
+    }
+}

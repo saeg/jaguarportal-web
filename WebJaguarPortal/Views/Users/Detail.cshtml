@@ -1,0 +1,135 @@
+﻿@model UserEditViewModel
+@{
+    ViewData["Title"] = "User";
+}
+
+<div class="container-fluid uniquePanel">
+
+    <h1>Detail User</h1>
+    <h4>User: @Model.Username</h4>
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
+
+            <div class="form-group mb-2">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" type="text" class="form-control" placeholder="Name" readonly>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name" readonly>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" type="text" class="form-control" placeholder="Last name" readonly>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" class="form-control" placeholder="E-mail" readonly>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-6 mt-3">
+                <h4>Roles</h4>
+
+                <div class="form-check form-switch mb-3">
+                    <input type="checkbox" onchange="javascript:if(this.checked){$('table').fadeOut(0)}else{$('table').fadeIn(0)}" class="form-check-input" class="form-check-input" asp-for="Roles.IsAdmin" disabled />
+                    <label asp-for="Roles.IsAdmin" class="form-check-label"></label>
+                </div>
+
+                <table class="table table-striped table-borderless table-dark">
+                    <thead>
+                        <tr>
+                            <th>
+                                Feature
+                            </th>
+                            <th>
+                                List
+                            </th>
+                            <th>
+                                Detail
+                            </th>
+                            <th>
+                                New
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Projects
+                            </td>
+                            <td>
+
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.ProjectsPermission.List" disabled /> </div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.ProjectsPermission.Detail" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.ProjectsPermission.New" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.ProjectsPermission.Edit" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.ProjectsPermission.Delete" disabled /></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Analyzes
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.AnalyzesPermission.List" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.AnalyzesPermission.Detail" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.AnalyzesPermission.New" disabled /></div>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.AnalyzesPermission.Delete" disabled /></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Users
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.UsersPermission.List" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.UsersPermission.Detail" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.UsersPermission.New" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.UsersPermission.Edit" disabled /></div>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> <input type="checkbox" class="form-check-input" class="form-check-input" asp-for="Roles.UsersPermission.Delete" disabled /></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="float-end">
+                    <a href="@Url.Action("Index","Users")" class="btn btn-outline-primary btn-light">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

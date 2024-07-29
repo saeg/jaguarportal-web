@@ -1,0 +1,53 @@
+﻿@model FirstLoginPasswordViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Jaguar Portal - Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="containerLogin">
+        <div class="text-center">
+            <h1 class="visually-hidden">Jaguar Portal</h1>
+            <img src="~/img/jaguar.svg" alt="Jaguar Portal logo" class="logo" />
+        </div>
+        <div class="mt-4">
+            <form method="post" id="forgotPasswordForm">
+                <h4>First Access</h4>
+
+                <div class="form-group mb-2">
+                    <label asp-for="UsernameOrEmail">E-mail or username</label>
+                    <input asp-for="UsernameOrEmail" autofocus type="text" class="form-control" placeholder="Enter e-mail or username" required>
+                </div>
+                <div class="summary" style="width:340px">
+
+                </div>
+
+                <div class="w-100">
+                    <div class="form-group text-end">
+                        <a href="@Url.Action("Index","Login")" class="btn btn-outline-primary btn-light">Back</a>
+                        <button class="btn btn-primary" type="submit">Request password</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var urlForgotPasswordForm = '@Url.Action("FirstLogin","Login")';
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/js/ForgotPassword.js" asp-append-version="true"></script>
+</body>
+</html>
